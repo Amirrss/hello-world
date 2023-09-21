@@ -1,0 +1,29 @@
+#Chivalo Map code via function 
+import numpy as np 
+import matplotlib.pyplot as plt 
+
+
+def Chivalo_Map(x, y, a=0.89, b=0.18,c=0.28,k=0.025):
+	x_next =  x ** 2* np.exp(y-x)+k
+	y_next = a*y-b*x+c
+	return x_next, y_next
+	
+# number of iterations and array initialization
+steps = 1000
+X = np.zeros(steps + 1)
+Y = np.zeros(steps + 1)
+
+# starting point
+X[0], Y[0] = 1, 1
+
+for i in range(steps):
+	x_next, y_next = Chivalo_Map(X[i], Y[i])
+	X[i+1] = x_next
+	Y[i+1] = y_next
+
+# Plot Y values against X values
+plt.plot(X, Y, 'b-', lw=0.5)
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.title('Y vs. X')
+plt.show()
