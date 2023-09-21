@@ -1,0 +1,33 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+X = []
+Y = []
+
+steps = 1000
+a = 0.89
+b = 0.18
+c = 0.28
+k = 0.025
+x = 0.0
+y = 0.0
+
+for i in range(steps):
+    x_next = x ** 2 * np.exp(y - x) + k
+    y_next = a * y - b * x + c
+
+    x = x_next
+    y = y_next
+
+    X.append(x)
+    Y.append(y)
+
+# Plot the data
+plt.plot(X, label='X')
+
+plt.xlabel('Iteration')
+
+plt.legend()
+plt.xlim(0, len(X))  
+
+plt.show()
