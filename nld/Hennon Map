@@ -1,0 +1,40 @@
+#Hennon Map 
+
+import numpy as np 
+import matplotlib.pyplot as plt 
+#plt.style.use('dark_background')
+
+def map(x, y, a=1.4, b=0.3):
+	
+	
+	x_next = 1 - a * x ** 2 + y
+	y_next = b * x
+	return x_next, y_next
+	
+# number of iterations and array initialization
+steps = 100000
+X = np.zeros(steps + 1)
+Y = np.zeros(steps + 1)
+
+# starting point
+X[0], Y[0] = 0, 0
+
+
+for i in range(steps):
+	x_next, y_next = map(X[i], Y[i])
+	X[i+1] = x_next
+	Y[i+1] = y_next
+	
+# plot figure
+plt.plot(X, Y, '*', color='orange', alpha = 1.0, markersize=0.1)
+#plt.axis('off')
+
+#plt.close()
+
+# Plot Y values against X values
+#plt.plot(X, Y, 'b-', lw=0.5)
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.title('Y vs. X')
+plt.show()
+
